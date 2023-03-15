@@ -1,0 +1,13 @@
+/* Center the dialog box */
+
+  
+  /* Style the action buttons */
+  .action {
+    margin-top: 16px;
+  }
+  .action {
+    padding: 0px 25px 20px;
+  }
+.action button{
+    flex:auto
+}

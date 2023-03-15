@@ -1,0 +1,38 @@
+.divtable{
+  width: 50%;
+  margin: 50px auto;
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  font-weight: bold;
+  padding: 12px;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+.delBtn{
+  color: red;
+}
+
+tr:not(.mat-header-row):hover {
+  background-color: #ddcccc;
+}
+
+mat-paginator{
+  background-color: #03a152;
+  color: white;
+}
+.blue-button{
+  float: left;
+  padding: auto;
+  margin: 20px;
+  color: white;
+}
+
