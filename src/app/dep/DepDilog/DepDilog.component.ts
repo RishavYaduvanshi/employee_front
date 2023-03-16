@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MyserService } from 'src/app/services/myser.service';
 
 @Component({
@@ -9,28 +9,51 @@ import { MyserService } from 'src/app/services/myser.service';
   styleUrls: ['./DepDilog.component.css']
 })
 export class DepDilogComponent implements OnInit {
-  depForm : FormGroup;
+  depForm: FormGroup;
   constructor(
-    private _fb : FormBuilder, 
-    private _depser : MyserService, 
-    private _dilogref : MatDialogRef<DepDilogComponent>
+    private _fb: FormBuilder,
+    private _depser: MyserService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
+    private _dilogref: MatDialogRef<DepDilogComponent>
   ) {
     this.depForm = this._fb.group({
-      name: ''
+      name: ['', Validators.required]
     });
-   }
+  }
 
   ngOnInit() {
+    this.depForm.patchValue(this.data)
   }
-  onFormSubmit(){
-    this._depser.addDep(this.depForm.value).subscribe({
-      next : (val : any)=>{
-        alert("Department Added Successfully");
-        this._dilogref.close(true);
-      },
-      error : (err : any)=>{
-        alert(err.error)
+  onFormSubmit() {
+    if (this.depForm.valid) {
+      if (this.data) {
+        this._depser.updateDep(this.data.id, this.depForm.value).subscribe({
+          next: (val: any) => {
+            alert("Department Updated Successfully");
+            this._dilogref.close(true);
+          },
+          error: (err: any) => {
+            alert("Server error: " + err.error);
+            console.error(err)
+          }
+        })
       }
-    })
+      else {
+        this._depser.addDep(this.depForm.value).subscribe({
+          next: (val: any) => {
+            alert("Department Added Successfully");
+            this._dilogref.close(true);
+          },
+          error: (err: any) => {
+            alert(err.error)
+          }
+        })
+      }
+    }
+    else{
+      alert("Fill data Correctly");
+    }
   }
+
 }

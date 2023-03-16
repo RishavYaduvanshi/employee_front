@@ -1,6 +1,6 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MyserService} from '../../services/myser.service';
 
 
@@ -19,12 +19,13 @@ export class EmpDialogComponent implements OnInit {
     private _dilogref : MatDialogRef<EmpDialogComponent>) 
     { 
       this.empForm = this._fb.group({
-        name: '',
-        email: '',
-        departmentId: '',
+        name: ['', Validators.required],
+        email: ['', Validators.compose([Validators.required,Validators.pattern('[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')])],
+        departmentId: ['', Validators.required],
       });
     }
   onFormSubmit(){
+
     if(this.empForm.valid){
       if(this.data){
         this._empser.updateUser(this.data.id,this.empForm.value).subscribe({
@@ -51,9 +52,17 @@ export class EmpDialogComponent implements OnInit {
         })
       }
     }
+    else{
+      alert('Fill the data Correctly')
+    }
   }
   ngOnInit() {
     this.empForm.patchValue(this.data)
   }
-
+  get email(){
+    return this.empForm.get('email');
+  }
 }
+
+
+

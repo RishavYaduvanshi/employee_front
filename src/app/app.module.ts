@@ -25,6 +25,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { DelDilogComponent } from './emp/delDilog/delDilog.component';
 import { DepDilogComponent } from './dep/DepDilog/DepDilog.component';
+import { DepDelDilogComponent } from './dep/DepDelDilog/DepDelDilog.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { DepDilogComponent } from './dep/DepDilog/DepDilog.component';
     EmpDialogComponent,
     DelDilogComponent,
     DepDilogComponent,
+    DepDelDilogComponent,
   ],
   imports: [
     BrowserModule,

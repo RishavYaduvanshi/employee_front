@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DepDilogComponent } from './DepDilog/DepDilog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DepDelDilogComponent } from './DepDelDilog/DepDelDilog.component';
 export interface ReqDataType {
   id : number;
   name: string;
@@ -38,7 +39,18 @@ export class DepComponent {
         },
       });
     }
-
+    openEditForm(data:any){
+      const dialogRef = this._dilog.open(DepDilogComponent,{
+        data : data
+      });
+      dialogRef.afterClosed().subscribe({
+        next:(val)=>{
+          if(val){
+            this.getDepartmentList();
+          }
+        }
+      });
+    }
     getDepartmentList() {
       this._depser.getDepartment().subscribe({
         next: (res) => {
@@ -48,6 +60,19 @@ export class DepComponent {
         error: (err) => {
           alert("Server error: " + err.message);
           
+        },
+      });
+    }
+
+    openDelete(data:any){
+      const dialogRef =  this._dilog.open(DepDelDilogComponent, {
+        data : data      
+      });
+      dialogRef.afterClosed().subscribe({
+        next: (val) => {
+          if (val) {
+            this.getDepartmentList();
+          }
         },
       });
     }

@@ -14,6 +14,8 @@ export class MyserService {
   url4 = 'https://localhost:7052/Employee/DeleteEmployee/'
   url5 = 'https://localhost:7052/Employee/UpdateEmployee/'
   url6 = 'https://localhost:7052/Department/AddDepartment'
+  url7 = 'https://localhost:7052/Department/DeleteDepartment/'
+  url8 = 'https://localhost:7052/Department/UpdateDepartment/'
 
 
   
@@ -48,5 +50,11 @@ export class MyserService {
     return this.http.post(this.url6,data,{
       
     })
+  }
+  deleteDep(id:number){
+    return this.http.delete(this.url7+id);
+  }
+  updateDep(id : number, data : any){
+    return this.http.put(this.url8+id,data);
   }
 }
