@@ -26,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DelDilogComponent } from './emp/delDilog/delDilog.component';
 import { DepDilogComponent } from './dep/DepDilog/DepDilog.component';
 import { DepDelDilogComponent } from './dep/DepDelDilog/DepDelDilog.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { DepDelDilogComponent } from './dep/DepDelDilog/DepDelDilog.component';
     ReactiveFormsModule,
     MatPaginatorModule,
     MatToolbarModule,
+    MatSortModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

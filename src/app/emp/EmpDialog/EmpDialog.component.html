@@ -1,25 +1,33 @@
 <div mat-dialog-title>
-  <h3>Employee Form</h3>
+  <h3>{{data ? 'Update Employee Form':'Add Employee Form'}}</h3>
 </div>
 
 <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
+    <mat-label>Name</mat-label>
     <mat-form-field appearance="outline">
-      <mat-label>First</mat-label>
-      <input matInput type="text" placeholder="Ex. Technical" formControlName="name">
+      <input matInput type="text" placeholder="Ex. Ram" formControlName="name">
+      <mat-icon matSuffix>account_circle</mat-icon>
+      <mat-hint *ngIf="name && name.invalid && name.touched" >Please enter your name </mat-hint>
     </mat-form-field>
+
+    <mat-label>Email</mat-label>
     <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
       <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
-      <!-- <span style="color: red;" *ngIf="email && email.invalid && email.touched">Email format is not correct *</span><br><br> -->
+      <mat-icon matSuffix>mail</mat-icon>
+      <mat-hint *ngIf="email && email.invalid && email.touched">Please enter a valid email address</mat-hint>
     </mat-form-field>
+
+    <mat-label>Department Name</mat-label>
     <mat-form-field appearance="outline">
-      <mat-label>Department Id</mat-label>
-      <input matInput placeholder="Ex. 4" type="number" formControlName="departmentId">
+      <mat-select placeholder="Select Department" formControlName="departmentName">
+        <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+      </mat-select>
+      <mat-hint *ngIf="departmentName && departmentName.invalid && departmentName.touched">Please select Department Name</mat-hint>
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">
     <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" type="submit" >{{data ? 'Update':'Save'}}</button>
+    <button mat-raised-button color="primary" type="submit">{{data ? 'Update':'Save'}}</button>
   </div>
 </form>

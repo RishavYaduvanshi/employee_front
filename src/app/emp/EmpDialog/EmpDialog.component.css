@@ -1,19 +1,53 @@
-
 .content {
- padding-top: 10px;
+    padding-top: 10px;
 }
+
 .action {
     padding: 0px 25px 20px;
-  }
-.action button{
+}
+
+.action button {
     flex: 1;
 }
 
 mat-form-field {
     width: 100%;
+
 }
 
 
+mat-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #383737;
+}
 
+mat-hint {
 
- 
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+}
+
+mat-icon {
+    font-size: 20px;
+    color: #032c85;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-flex .mat-form-field-infix {
+    padding: 0px 0px 0px 0px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Adjust the gap value to increase or decrease spacing between components */
+}
+
+.action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    /* Adjust the gap value to increase or decrease spacing between buttons */
+}   

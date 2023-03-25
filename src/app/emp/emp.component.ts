@@ -5,6 +5,7 @@ import { EmpDialogComponent } from './EmpDialog/EmpDialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DelDilogComponent } from './delDilog/delDilog.component';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-emp',
@@ -15,15 +16,30 @@ export class EmpComponent {
 
   constructor(
     private _empser: MyserService, 
-    private _dilog: MatDialog) 
+    private _dilog: MatDialog,
+    )
     { }
   dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['name', 'email', 'departmentId', 'department', 'action'];
+  displayedColumns: string[] = ['name', 'email', 'department', 'action'];
 
   @ViewChild(MatPaginator) _matpage!: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this._matpage;
+    if(this.dataSource){
+      console.log(this.dataSource)
+      this.dataSource.paginator = this._matpage;
+      this.dataSource.sort = this.sort;
+    }
+    
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   ngOnInit() {
@@ -45,6 +61,7 @@ export class EmpComponent {
       next: (res) => {
         this.dataSource = new MatTableDataSource(res as any);
         this.dataSource.paginator = this._matpage;
+        this.dataSource.sort = this.sort;
       },
       error: (err) => {
         alert("Server error: " + err.message);

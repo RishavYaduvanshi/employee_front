@@ -1,14 +1,14 @@
 <body>
     <mat-toolbar class = "navcol">
         <div class="example-button-container">
-            <button mat-fab color="" routerLink="">
+            <button mat-fab color="" routerLink="" (click)="changeColor('home')">
                 <mat-icon>home</mat-icon>
             </button>
         </div>
             <span class="example-spacer"></span>
         <div class="rightBtn">
-            <button mat-raised-button color="primary" routerLink="emp">EMPLOYEE Details</button>
-            <button mat-raised-button routerLink="dep">Department Details</button>
+            <button mat-raised-button routerLink="emp" (click)="changeColor('emp')">EMPLOYEE Details</button>
+            <button mat-raised-button routerLink="dep" (click)="changeColor('dep')">Department Details</button>
         </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
