@@ -12,7 +12,6 @@
 
 mat-form-field {
     width: 100%;
-
 }
 
 
@@ -38,16 +37,14 @@ mat-icon {
     padding: 0px 0px 0px 0px;
 }
 
-.content {
+/* .content {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    /* Adjust the gap value to increase or decrease spacing between components */
-}
-
-.action {
+    /* Adjust the gap value to increase or decrease spacing between components */ 
+/* .action {
     display: flex;
     justify-content: flex-end;
-    gap: 16px;
+    gap: 16px; */
     /* Adjust the gap value to increase or decrease spacing between buttons */
-}   
+  

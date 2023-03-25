@@ -24,7 +24,7 @@ export class DelDilogComponent implements OnInit {
     console.log(this.data)
     this._empser.deleteUser(this.data).subscribe({
       next : (val : any)=>{
-        alert("Employee Deleted Successfully");
+        // alert("Employee Deleted Successfully");
         this._dilogref.close(true);
       },
       error : (err : any)=>{

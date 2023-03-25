@@ -13,38 +13,45 @@ import { MyserService } from '../../services/myser.service';
 export class EmpDialogComponent implements OnInit {
 
   empForm: FormGroup;
-  departments : string[] = [];
+  departments: string[] = [];
+  submitted = false;
+  selecteddepartment = 'Java';
   constructor(
     private _fb: FormBuilder,
     private _empser: MyserService,
+
     @Inject(MAT_DIALOG_DATA) public data: any,
+
     private _dilogref: MatDialogRef<EmpDialogComponent>) {
     this.empForm = this._fb.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      mobileNumber: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{10}')])],
       email: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')])],
       departmentName: ['', Validators.required],
     });
   }
 
-  getDemartmentName(){
+  getDepartmentName() {
     this._empser.getDepartment().subscribe({
       next: (val: any) => {
-        this.departments = val.map((item:any)=>item.name);
+        this.departments = val.map((item: any) => item.name);
+        this.selecteddepartment = this.data.department.name;
+        console.log(this.departments);
       },
       error: (err: any) => {
-        console.error(err)
+        console.error(err);
       }
-      
-    })
+    });
   }
 
   onFormSubmit() {
-
+    this.submitted = true;
     if (this.empForm.valid) {
       if (this.data) {
-        this._empser.updateUser(this.data.id, this.empForm.value).subscribe({
+        this._empser.updateUser(this.data.id,  this.empForm.value).subscribe({
           next: (val: any) => {
-            alert("Employee Updated Successfully");
+            // alert("Employee Updated Successfully");
             this._dilogref.close(true);
           },
           error: (err: any) => {
@@ -56,7 +63,7 @@ export class EmpDialogComponent implements OnInit {
       else {
         this._empser.addUser(this.empForm.value).subscribe({
           next: (val: any) => {
-            alert("Employee Added Successfully");
+            // alert("Employee Added Successfully");
             this._dilogref.close(true);
           },
           error: (err: any) => {
@@ -72,18 +79,25 @@ export class EmpDialogComponent implements OnInit {
   }
   ngOnInit() {
     this.empForm.patchValue(this.data)
-    this.getDemartmentName();
+    this.getDepartmentName();
   }
+  
   get email() {
     return this.empForm.get('email');
   }
-  get name() {
-    return this.empForm.get('name');
+  get firstName() {
+    return this.empForm.get('firstName');
+  }
+  get lastName() {
+    return this.empForm.get('lastName');
+  }
+  get mobileNumber() {
+    return this.empForm.get('mobileNumber');
   }
   get departmentName() {
     return this.empForm.get('departmentName');
   }
-  
+
 }
 
 

@@ -4,12 +4,12 @@
 <form [formGroup]="depForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
     <mat-form-field appearance="outline">
-      <mat-label>First</mat-label>
+      <mat-label>Department Name</mat-label>
       <input matInput type="text" placeholder="Ex. Java" formControlName="name">
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button type="button"  [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" type="submit" >{{data?"Update":"save"}}</button>
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{data?"Update":"save"}}</button>
   </div>
 </form>

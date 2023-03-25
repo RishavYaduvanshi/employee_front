@@ -1,10 +1,11 @@
 .table-container {
-  width: 50%;
+  width: 70%;
   margin: 50px auto;
   font-family: Arial, sans-serif;
   border-collapse: collapse;
-  border: 1px solid #ddd;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
 }
 
 th {
@@ -28,9 +29,10 @@ tr:hover {
 
 
 mat-paginator{
-  background-color: #3E54AC;
-  color: white;
+  background-color: rgba(255, 255, 255, .1);
 }
+
+
 .blue-button{
   float: left;
   padding: auto;
@@ -46,3 +48,4 @@ mat-paginator{
   margin-top: 20px;
   height: 70px;
 }
+

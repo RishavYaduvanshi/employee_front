@@ -1,11 +1,11 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MyserService } from '../services/myser.service'
 import { MatDialog } from '@angular/material/dialog';
 import { EmpDialogComponent } from './EmpDialog/EmpDialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DelDilogComponent } from './delDilog/delDilog.component';
-import {MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-emp',
@@ -15,23 +15,21 @@ import {MatSort} from '@angular/material/sort';
 export class EmpComponent {
 
   constructor(
-    private _empser: MyserService, 
+    private _empser: MyserService,
     private _dilog: MatDialog,
-    )
-    { }
+  ) { }
   dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['name', 'email', 'department', 'action'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department', 'action'];
 
   @ViewChild(MatPaginator) _matpage!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
   ngAfterViewInit() {
-    if(this.dataSource){
-      console.log(this.dataSource)
+    if (this.dataSource) {
       this.dataSource.paginator = this._matpage;
       this.dataSource.sort = this.sort;
     }
-    
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -56,6 +54,7 @@ export class EmpComponent {
       },
     });
   }
+  
   getEmployeeList() {
     this._empser.getUser().subscribe({
       next: (res) => {
@@ -70,16 +69,11 @@ export class EmpComponent {
     });
   }
 
-  // deleteEmployee(id: number) {
-  //   this._empser.deleteUser(id).subscribe((res) => {
-  //     alert("Employee deleted !")
-  //     this.getEmployeeList();
-  //   })
-  // }
+  
 
-  openDelete(data:any){
-    const dialogRef =  this._dilog.open(DelDilogComponent, {
-      data : data      
+  openDelete(data: any) {
+    const dialogRef = this._dilog.open(DelDilogComponent, {
+      data: data
     });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
@@ -90,12 +84,6 @@ export class EmpComponent {
     });
   }
 
-  // updateEmployee(id: number, data: any) {
-  //   this._empser.updateUser(id, data).subscribe((res) => {
-  //     alert("Employee Updated !")
-  //     this.getEmployeeList();
-  //   })
-  // }
   openEditForm(data: any) {
     const dialogRef = this._dilog.open(EmpDialogComponent, {
       data: data
