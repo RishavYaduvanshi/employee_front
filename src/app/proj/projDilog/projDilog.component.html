@@ -1,12 +1,16 @@
 <div mat-dialog-title>
   <h3>{{data?"Update Department Form":"Add Department Form"}}</h3>
 </div>
-<form [formGroup]="depForm" (ngSubmit)="onFormSubmit()">
+
+<form [formGroup]="projForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
-    <mat-label>Department Name <span class="required">*</span></mat-label>
+    <mat-label>Project Name <span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
-      <input matInput type="text" placeholder="Ex. Java" formControlName="name">
-      <mat-hint *ngIf="depname && depname.invalid && submitted">Please enter the department name </mat-hint>
+      <input matInput type="text" placeholder="Ex. Java" formControlName="pName"> 
+    </mat-form-field>
+    <mat-label>Project Description <span class="required">*</span></mat-label>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" placeholder="Ex. Java" formControlName="pDescription">
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">

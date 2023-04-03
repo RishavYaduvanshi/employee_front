@@ -28,10 +28,14 @@ import { DepDilogComponent } from './dep/DepDilog/DepDilog.component';
 import { DepDelDilogComponent } from './dep/DepDelDilog/DepDelDilog.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
+import { ProjComponent } from './proj/proj.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
+import { ProjDilogComponent } from './proj/projDilog/projDilog.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     EmpComponent,
     DepComponent,
@@ -40,7 +44,9 @@ import { MatSelectModule } from '@angular/material/select';
     DelDilogComponent,
     DepDilogComponent,
     DepDelDilogComponent,
-  ],
+    ProjComponent,
+    ProjDilogComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -58,6 +64,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatToolbarModule,
     MatSortModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

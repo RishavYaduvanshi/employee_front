@@ -10,6 +10,8 @@
     flex: 1;
 }
 
+
+  
 mat-form-field {
     width: 100%;
 }
@@ -36,6 +38,8 @@ mat-icon {
 .mat-form-field-appearance-legacy .mat-form-field-flex .mat-form-field-infix {
     padding: 0px 0px 0px 0px;
 }
+
+
 
 /* .content {
     display: flex;

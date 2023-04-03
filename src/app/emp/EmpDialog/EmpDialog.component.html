@@ -3,43 +3,53 @@
 </div>
 <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
   <div mat-dialog-content class="content">
-    <mat-label>First Name</mat-label>
+
+    <mat-label>First Name<span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="text" placeholder="Ex. Ram" formControlName="firstName">
       <mat-icon matSuffix>account_circle</mat-icon>
       <mat-hint *ngIf="firstName && firstName.invalid && submitted">Please enter your first name </mat-hint>
     </mat-form-field>
 
-    <mat-label>Last Name</mat-label>
+    <mat-label>Last Name <span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="text" placeholder="Ex. Ram" formControlName="lastName">
       <mat-icon matSuffix>account_circle</mat-icon>
       <mat-hint *ngIf="lastName && lastName.invalid && submitted">Please enter your last name </mat-hint>
     </mat-form-field>
 
-    <mat-label>Email</mat-label>
+    <mat-label>Email <span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="email" placeholder="Ex. test@gmail.com" formControlName="email">
       <mat-icon matSuffix>mail</mat-icon>
       <mat-hint *ngIf="email && email.invalid && submitted ">Please enter a valid email address</mat-hint>
     </mat-form-field>
 
-    <mat-label>Mobile Number</mat-label>
+    <mat-label>Mobile Number <span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
       <input matInput type="text" placeholder="Ex. Ram" formControlName="mobileNumber">
-      <mat-icon matSuffix>account_circle</mat-icon>
+      <mat-icon matSuffix>phone</mat-icon>
       <mat-hint *ngIf="mobileNumber && mobileNumber.invalid && submitted">Please enter a valid mobile number
       </mat-hint>
     </mat-form-field>
 
-    <mat-label>Department Name</mat-label>
+    <mat-label>Department Name <span class="required">*</span></mat-label>
     <mat-form-field appearance="outline">
-      <mat-select placeholder="Select Department" formControlName="departmentName" [(ngModel)]="selecteddepartment" >
-        <mat-option *ngFor="let dep of departments" [value]= 'dep'>{{dep}}</mat-option>
+      <mat-select placeholder="Select Department" formControlName="departmentName" [(ngModel)]="selecteddepartment">
+        <mat-option *ngFor="let dep of departments" [value]='dep'>{{dep}}</mat-option>
       </mat-select>
       <mat-hint *ngIf="departmentName && departmentName.invalid && submitted">Please select Department
         Name</mat-hint>
     </mat-form-field>
+
+
+    <mat-label>Projects</mat-label>
+    <mat-selection-list formControlName="ProjectIds" [(ngModel)]="selectedProjects">
+      <mat-list-option *ngFor="let project of projects" [value]="project.pId">
+        {{ project.pName }}
+      </mat-list-option>
+    </mat-selection-list>
+
   </div>
   <div mat-dialog-actions class="action">
     <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>

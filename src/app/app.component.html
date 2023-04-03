@@ -1,16 +1,19 @@
 <body>
-    <mat-toolbar class = "navcol">
+    <mat-toolbar class="navcol">
         <div class="example-button-container">
             <button mat-fab color="" routerLink="" (click)="changeColor('home')">
                 <mat-icon>home</mat-icon>
             </button>
         </div>
-            <span class="example-spacer"></span>
+        <span class="example-spacer"></span>
         <div class="rightBtn">
             <button mat-raised-button routerLink="emp" (click)="changeColor('emp')">EMPLOYEE Details</button>
+            <span style="margin-right: 8px;"></span>
             <button mat-raised-button routerLink="dep" (click)="changeColor('dep')">Department Details</button>
+            <span style="margin-right: 8px;"></span>
+            <button mat-raised-button routerLink="proj" (click)="changeColor('proj')">Project Details</button>
         </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    
+
 </body>

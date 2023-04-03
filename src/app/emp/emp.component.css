@@ -34,7 +34,7 @@ mat-paginator{
 
 
 .blue-button{
-  float: left;
+  float: right;
   padding: auto;
   margin: 20px;
   background-color: #3E54AC;
@@ -43,8 +43,8 @@ mat-paginator{
 
 
 .search{
-  float: right;
-  margin-right: 20px;
+  float: left;
+  margin-left: 20px;
   margin-top: 20px;
   height: 70px;
 }

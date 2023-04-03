@@ -2,9 +2,12 @@ import { Component,ViewChild } from '@angular/core';
 import {MyserService} from '../services/myser.service'
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { DepDilogComponent } from './DepDilog/DepDilog.component';
+
 import { MatDialog } from '@angular/material/dialog';
 import { DepDelDilogComponent } from './DepDelDilog/DepDelDilog.component';
+import { MatSort } from '@angular/material/sort';
+import { DepDilogComponent } from './DepDilog/DepDilog.component';
+
 export interface ReqDataType {
   id : number;
   name: string;
@@ -18,14 +21,21 @@ export class DepComponent {
 
     constructor(
       private _depser : MyserService,
-      private _dilog: MatDialog) 
+      private _dilog: MatDialog
+      ) 
       {}
     @ViewChild(MatPaginator) _matpage!: MatPaginator;
+
+    @ViewChild(MatSort) sort !: MatSort;
     
     department!: MatTableDataSource<any>;
 
     ngOnInit(){
       this.getDepartmentList();
+      if(this.department){ 
+        this.department.paginator = this._matpage;
+        this.department.sort = this.sort;
+      }
     }
     displayedColumns: string[] = ['name', 'action'];
 
@@ -56,6 +66,7 @@ export class DepComponent {
         next: (res) => {
           this.department = new MatTableDataSource(res as any);
           this.department.paginator = this._matpage;
+          this.department.sort = this.sort;
         },
         error: (err) => {
           alert("Server error: " + err.message);
@@ -76,5 +87,12 @@ export class DepComponent {
         },
       });
     }
-    
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.department.filter = filterValue.trim().toLowerCase();
+  
+      if (this.department.paginator) {
+        this.department.paginator.firstPage();
+      }
+    }
 }

@@ -27,11 +27,16 @@ tr:not(.mat-header-row):hover {
 }
 
 mat-paginator{
-  background-color: #03a152;
-  color: white;
+  background-color: rgba(255, 255, 255, .1);
+}
+.search{
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+  height: 70px;
 }
 .blue-button{
-  float: left;
+  float: right;
   padding: auto;
   margin: 20px;
   color: white;

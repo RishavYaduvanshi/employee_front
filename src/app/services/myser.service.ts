@@ -16,6 +16,9 @@ export class MyserService {
   url6 = 'https://localhost:7052/Department/AddDepartment'
   url7 = 'https://localhost:7052/Department/DeleteDepartment/'
   url8 = 'https://localhost:7052/Department/UpdateDepartment/'
+  url9 = 'https://localhost:7052/Project/GetAllProjects'
+  url10 = 'https://localhost:7052/Project/AddProject'
+  url11 = 'https://localhost:7052/Project/UpdateProject/'
 
 
   
@@ -56,5 +59,18 @@ export class MyserService {
   }
   updateDep(id : number, data : any){
     return this.http.put(this.url8+id,data);
+  }
+
+  getProjList(){
+    return this.http.get(this.url9,{
+    });
+  }
+
+  addProj(data:any){
+    return this.http.post(this.url10,data,{
+    })
+  }
+  updateProj(id : number, data : any){
+    return this.http.put(this.url11+id,data);
   }
 }

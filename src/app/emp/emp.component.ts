@@ -19,7 +19,7 @@ export class EmpComponent {
     private _dilog: MatDialog,
   ) { }
   dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department', 'action'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department','employeeProjects','action'];
 
   @ViewChild(MatPaginator) _matpage!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -58,6 +58,7 @@ export class EmpComponent {
   getEmployeeList() {
     this._empser.getUser().subscribe({
       next: (res) => {
+        console.log(res);
         this.dataSource = new MatTableDataSource(res as any);
         this.dataSource.paginator = this._matpage;
         this.dataSource.sort = this.sort;

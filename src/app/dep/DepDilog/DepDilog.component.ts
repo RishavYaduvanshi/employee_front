@@ -10,13 +10,16 @@ import { MyserService } from 'src/app/services/myser.service';
 })
 export class DepDilogComponent implements OnInit {
   depForm: FormGroup;
+  submitted = false;
+
   constructor(
     private _fb: FormBuilder,
     private _depser: MyserService,
     @Inject(MAT_DIALOG_DATA) public data: any,
 
     private _dilogref: MatDialogRef<DepDilogComponent>
-  ) {
+  ) 
+  {
     this.depForm = this._fb.group({
       name: ['', Validators.required]
     });
@@ -26,11 +29,12 @@ export class DepDilogComponent implements OnInit {
     this.depForm.patchValue(this.data)
   }
   onFormSubmit() {
+    this.submitted = true;
     if (this.depForm.valid) {
       if (this.data) {
         this._depser.updateDep(this.data.id, this.depForm.value).subscribe({
           next: (val: any) => {
-            alert("Department Updated Successfully");
+            // alert("Department Updated Successfully");
             this._dilogref.close(true);
           },
           error: (err: any) => {
@@ -42,7 +46,7 @@ export class DepDilogComponent implements OnInit {
       else {
         this._depser.addDep(this.depForm.value).subscribe({
           next: (val: any) => {
-            alert("Department Added Successfully");
+            // alert("Department Added Successfully");
             this._dilogref.close(true);
           },
           error: (err: any) => {
@@ -52,8 +56,11 @@ export class DepDilogComponent implements OnInit {
       }
     }
     else{
-      alert("Fill data Correctly");
+      
     }
+  }
+  get depname() {
+    return this.depForm.get('name');
   }
 
 }

@@ -1,27 +1,30 @@
 <div class=divtable>
-  <button mat-raised-button  color = "primary" class="blue-button" (click)="openAddForm()">
-    Add Department
+  <button mat-raised-button color="primary" class="blue-button" (click)="openAddForm()">
+    Add Project
   </button>
   <mat-form-field class="search">
     <mat-label>Search</mat-label>
     <mat-icon matSuffix>search</mat-icon>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Search" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="department" matSort class="mat-elevation-z8">
-   
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header > Department Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+  <table mat-table [dataSource]="project" matSort class="mat-elevation-z8">
 
+    <ng-container matColumnDef="pName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.pName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="pDescription">
+      <th mat-header-cell *matHeaderCellDef> Project Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.pDescription}} </td>
+    </ng-container>pdiscription
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef > Action </th>
+      <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openEditForm(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="openDelete(row)">
-          <mat-icon class="delBtn"  >delete</mat-icon>
+        <button mat-icon-button>
+          <mat-icon class="delBtn">delete</mat-icon>
         </button>
       </td>
     </ng-container>

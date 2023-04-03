@@ -1,14 +1,14 @@
-
 <div class=table-container>
-    <button mat-raised-button (click)="openAddEditForm()" class="blue-button">
-      Add Employee
-    </button>
-    <mat-form-field class="search">
-      <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Search" #input>
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-   
+  <button mat-raised-button (click)="openAddEditForm()" class="blue-button">
+    Add Employee
+  </button>
+  <mat-form-field class="search">
+    <mat-label>Search</mat-label>
+    <mat-icon matSuffix>search</mat-icon>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Search" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
@@ -26,7 +26,7 @@
     </ng-container>
 
     <ng-container matColumnDef="mobileNumber">
-      <th mat-header-cell *matHeaderCellDef > Mobile No </th>
+      <th mat-header-cell *matHeaderCellDef> Mobile No </th>
       <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
     </ng-container>
 
@@ -36,13 +36,21 @@
         <span *ngIf="element.department">{{ element.department.name }}</span>
       </td>
     </ng-container>
+
+    <ng-container matColumnDef="employeeProjects">
+      <th mat-header-cell *matHeaderCellDef>Projects</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngFor="let project of element.employeeProjects">{{project.project.pName}}, </span>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef > Action </th>
+      <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openEditForm(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button  (click)="openDelete(row.id)">
+        <button mat-icon-button (click)="openDelete(row.id)">
           <mat-icon class="delBtn">delete</mat-icon>
         </button>
       </td>

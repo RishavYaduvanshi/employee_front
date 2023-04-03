@@ -1,0 +1,81 @@
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MyserService } from '../services/myser.service';
+import { ProjDilogComponent } from './projDilog/projDilog.component';
+
+
+@Component({
+  selector: 'app-proj',
+  templateUrl: './proj.component.html',
+  styleUrls: ['./proj.component.css']
+})
+export class ProjComponent implements OnInit {
+
+  constructor(
+    private _projserv: MyserService,
+    private _dilog: MatDialog
+  ) 
+  { }
+
+  @ViewChild(MatPaginator) _matpage!: MatPaginator;
+
+  @ViewChild(MatSort) sort !: MatSort;
+  
+
+  ngOnInit() {
+    this.getProjectList();
+    if(this.project){
+      this.project.paginator = this._matpage;
+      this.project.sort = this.sort;
+    }
+  }
+  project!: MatTableDataSource<any>;
+  displayedColumns: string[] = ['pName', 'pDescription', 'action'];
+
+  getProjectList() {
+   
+    this._projserv.getProjList().subscribe((data: any) => {
+      this.project = new MatTableDataSource(data);
+      console.log(data);
+      this.project.paginator = this._matpage;
+      this.project.sort = this.sort;
+    })
+  }
+
+  openAddForm() {
+    const dialogRef = this._dilog.open(ProjDilogComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getProjectList();
+        }
+      },
+    });
+  }
+  openEditForm(data:any){
+    const dialogRef = this._dilog.open(ProjDilogComponent,{
+      data : data
+    });
+    dialogRef.afterClosed().subscribe({
+      next:(val)=>{
+        if(val){
+          this.getProjectList();
+        }
+      }
+    });
+  }
+  
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.project.filter = filterValue.trim().toLowerCase();
+
+    if (this.project.paginator) {
+      this.project.paginator.firstPage();
+    }
+  }
+
+}

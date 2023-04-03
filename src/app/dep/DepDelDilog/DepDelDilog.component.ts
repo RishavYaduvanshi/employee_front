@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DepDelDilogComponent implements OnInit {
 
+  deldepName : string = this.data.name;
   constructor(
     private _empser : MyserService,
     private _dilogref : MatDialogRef<DepDelDilogComponent>,
@@ -19,10 +20,9 @@ export class DepDelDilogComponent implements OnInit {
   ngOnInit() {
   }
   deleteDep(){
-    console.log(this.data)
-    this._empser.deleteDep(this.data).subscribe({
+    this._empser.deleteDep(this.data.id).subscribe({
       next : (val : any)=>{
-        alert("Department Deleted Successfully");
+        // alert("Department Deleted Successfully");
         this._dilogref.close(true);
       },
       error : (err : any)=>{
