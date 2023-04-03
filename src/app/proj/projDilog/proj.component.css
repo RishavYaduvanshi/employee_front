@@ -1,0 +1,45 @@
+.divtable{
+    width: 50%;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  th {
+    font-weight: bold;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+  .delBtn{
+    color: red;
+  }
+  
+  tr:not(.mat-header-row):hover {
+    background-color: #ddcccc;
+  }
+  
+  mat-paginator{
+    background-color: rgba(255, 255, 255, .1);
+  }
+  .search{
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    height: 70px;
+  }
+  .blue-button{
+    float: right;
+    padding: auto;
+    margin: 20px;
+    color: white;
+  }
+  
+  
