@@ -19,6 +19,7 @@ export class MyserService {
   url9 = 'https://localhost:7052/Project/GetAllProjects'
   url10 = 'https://localhost:7052/Project/AddProject'
   url11 = 'https://localhost:7052/Project/UpdateProject/'
+  url12 = 'https://localhost:7052/Project/DeleteProject/'
 
 
   
@@ -73,4 +74,8 @@ export class MyserService {
   updateProj(id : number, data : any){
     return this.http.put(this.url11+id,data);
   }
+  deleteProj(id:number){
+    return this.http.delete(this.url12+id);
+  }
+
 }

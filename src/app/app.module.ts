@@ -32,6 +32,7 @@ import { ProjComponent } from './proj/proj.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { ProjDilogComponent } from './proj/projDilog/projDilog.component';
+import { ProjDelComponent } from './proj/projDel/projDel.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ProjDilogComponent } from './proj/projDilog/projDilog.component';
     DepDilogComponent,
     DepDelDilogComponent,
     ProjComponent,
-    ProjDilogComponent
+    ProjDilogComponent,
+    ProjDelComponent,
    ],
   imports: [
     BrowserModule,

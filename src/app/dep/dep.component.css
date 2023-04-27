@@ -41,4 +41,14 @@ mat-paginator{
   margin: 20px;
   color: white;
 }
-
+.no-data-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 20px;
+  height: 100vh; /* Set the height to the full viewport height */
+}
+.centered {
+  margin-right: 100px;
+}

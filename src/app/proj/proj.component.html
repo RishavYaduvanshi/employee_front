@@ -7,7 +7,8 @@
     <mat-icon matSuffix>search</mat-icon>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Search" #input>
   </mat-form-field>
-  <table mat-table [dataSource]="project" matSort class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="project" *ngIf="!noDataFound; else noData" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="pName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
@@ -23,7 +24,7 @@
         <button mat-icon-button color="primary" (click)="openEditForm(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openDelete(row)">
           <mat-icon class="delBtn">delete</mat-icon>
         </button>
       </td>
@@ -32,5 +33,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <ng-template #noData>
+    <div class="no-data-message">
+      <mat-icon>sentiment_very_dissatisfied</mat-icon>
+      <p>No project record found</p>
+    </div>
+  </ng-template>
   <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

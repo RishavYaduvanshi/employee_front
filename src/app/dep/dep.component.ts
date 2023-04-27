@@ -87,12 +87,21 @@ export class DepComponent {
         },
       });
     }
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.department.filter = filterValue.trim().toLowerCase();
-  
-      if (this.department.paginator) {
-        this.department.paginator.firstPage();
-      }
+    noDataFound = false;
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.department.filter = filterValue.trim().toLowerCase();
+
+    if (this.department.paginator) {
+      this.department.paginator.firstPage();
     }
+
+    // Check if the filtered data is empty
+    if (this.department.filteredData.length === 0) {
+      this.noDataFound = true;
+    } else {
+      this.noDataFound = false;
+    }
+  }
 }

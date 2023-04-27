@@ -1,0 +1,10 @@
+<div mat-dialog-title>
+  <h3>Are you Sure ?</h3>
+</div>
+<div mat-dialog-content>
+  <p>Are you sure want delete the {{delprojName}} Project ? You cannot view this Project any more if you delete</p>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="warn"  type="submit" (click)="deleteProj()">Delete</button>
+</div>

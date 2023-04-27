@@ -8,7 +8,7 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Search" #input>
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource"  *ngIf="!noDataFound; else noData" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
@@ -59,5 +59,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <ng-template #noData>
+    <div class="no-data-message">
+      <mat-icon>sentiment_very_dissatisfied</mat-icon>
+      <p>No Employee record found</p>
+    </div>
+  </ng-template>
   <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

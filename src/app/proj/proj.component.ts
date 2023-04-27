@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MyserService } from '../services/myser.service';
 import { ProjDilogComponent } from './projDilog/projDilog.component';
+import { ProjDelComponent } from './projDel/projDel.component';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class ProjComponent implements OnInit {
    
     this._projserv.getProjList().subscribe((data: any) => {
       this.project = new MatTableDataSource(data);
-      console.log(data);
+      // console.log(data);
       this.project.paginator = this._matpage;
       this.project.sort = this.sort;
     })
@@ -67,7 +68,21 @@ export class ProjComponent implements OnInit {
       }
     });
   }
-  
+
+  openDelete(data:any){
+    const dialogRef =  this._dilog.open(ProjDelComponent, {
+      data : data      
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getProjectList();
+        }
+      },
+    });
+  }
+
+  noDataFound = false;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -75,6 +90,13 @@ export class ProjComponent implements OnInit {
 
     if (this.project.paginator) {
       this.project.paginator.firstPage();
+    }
+
+    // Check if the filtered data is empty
+    if (this.project.filteredData.length === 0) {
+      this.noDataFound = true;
+    } else {
+      this.noDataFound = false;
     }
   }
 

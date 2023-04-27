@@ -48,4 +48,12 @@ mat-paginator{
   margin-top: 20px;
   height: 70px;
 }
+.no-data-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 20px;
+  height: 100vh; /* Set the height to the full viewport height */
+}
 

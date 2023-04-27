@@ -19,7 +19,7 @@ export class EmpComponent {
     private _dilog: MatDialog,
   ) { }
   dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department','employeeProjects','action'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department', 'employeeProjects', 'action'];
 
   @ViewChild(MatPaginator) _matpage!: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -31,12 +31,22 @@ export class EmpComponent {
     }
 
   }
+  
+  noDataFound = false;
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+    }
+
+    // Check if the filtered data is empty
+    if (this.dataSource.filteredData.length === 0) {
+      this.noDataFound = true;
+    } else {
+      this.noDataFound = false;
     }
   }
 
@@ -54,7 +64,7 @@ export class EmpComponent {
       },
     });
   }
-  
+
   getEmployeeList() {
     this._empser.getUser().subscribe({
       next: (res) => {
@@ -70,7 +80,7 @@ export class EmpComponent {
     });
   }
 
-  
+
 
   openDelete(data: any) {
     const dialogRef = this._dilog.open(DelDilogComponent, {
