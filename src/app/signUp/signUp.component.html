@@ -1,0 +1,35 @@
+<div class="login-wrapper" fxLayout="row">
+  <mat-card class="box">
+    <div mat-dialog-title>
+      <h3>SignUp</h3>
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-content class="content">
+        <mat-label>UserName <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" placeholder="Ex. _rishav_" formControlName="UserName"> 
+          <mat-hint *ngIf="UserName && UserName.invalid && submitted">Please enter your first name </mat-hint>
+        </mat-form-field>
+        <mat-label>Password <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="password" placeholder="********" formControlName="Password">
+          <mat-hint *ngIf="Password && Password.invalid && submitted">Please enter your Password</mat-hint>
+        </mat-form-field>
+        <mat-label>Email <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" placeholder="rishav@gmail.com" formControlName="Email">
+          <mat-hint *ngIf="Email&& Email.invalid && submitted">Please enter your email </mat-hint>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">SignUp</button>
+        
+      </div>
+      <div class="login-section">
+        <h4>Already have an account?</h4>
+        <a routerLink="/signin" class="login-link">Login</a>
+      </div>
+    </form>
+    
+  </mat-card>
+</div>

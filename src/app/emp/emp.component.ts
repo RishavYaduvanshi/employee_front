@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DelDilogComponent } from './delDilog/delDilog.component';
 import { MatSort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-emp',
@@ -17,6 +18,7 @@ export class EmpComponent {
   constructor(
     private _empser: MyserService,
     private _dilog: MatDialog,
+    private router: Router
   ) { }
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'mobileNumber', 'department', 'employeeProjects', 'action'];
@@ -25,6 +27,10 @@ export class EmpComponent {
   @ViewChild(MatSort) sort !: MatSort;
 
   ngAfterViewInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/signin']);
+    }
     if (this.dataSource) {
       this.dataSource.paginator = this._matpage;
       this.dataSource.sort = this.sort;
@@ -74,7 +80,6 @@ export class EmpComponent {
         this.dataSource.sort = this.sort;
       },
       error: (err) => {
-        alert("Server error: " + err.message);
         console.log(err);
       },
     });

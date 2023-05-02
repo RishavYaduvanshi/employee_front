@@ -1,0 +1,20 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  .navcol{
+    background-color: #ddcccc;
+  }
+  
+  .rightBtn {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  
+  .rightBtn button:first-child {
+    margin-right: 20px;
+  }
+  
+  

@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MyserService } from '../services/myser.service';
 import { ProjDilogComponent } from './projDilog/projDilog.component';
 import { ProjDelComponent } from './projDel/projDel.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ProjComponent implements OnInit {
 
   constructor(
     private _projserv: MyserService,
-    private _dilog: MatDialog
+    private _dilog: MatDialog,
+    private router: Router
   ) 
   { }
 
@@ -27,6 +29,10 @@ export class ProjComponent implements OnInit {
   
 
   ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/signin']);
+    }
     this.getProjectList();
     if(this.project){
       this.project.paginator = this._matpage;

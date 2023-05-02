@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {MyserService} from '../services/myser.service'
+import { MyserService } from '../services/myser.service'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,6 +10,12 @@ import {MyserService} from '../services/myser.service'
 })
 export class HomeComponent {
 
-  constructor(private userdata : MyserService){}
-  
+  constructor(private userdata: MyserService,private router : Router) { }
+
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/signin']);
+    }
+  }
 }
