@@ -37,6 +37,7 @@ import { SignUpComponent } from './signUp/signUp.component';
 import { SignInComponent } from './signIn/signIn.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgToastModule } from 'ng-angular-popup';
+import { LogoutComponent } from './navbar/logout/logout.component';
 
 @NgModule({
   declarations: [	
@@ -54,6 +55,7 @@ import { NgToastModule } from 'ng-angular-popup';
     SignUpComponent,
     SignInComponent,
     NavbarComponent,
+    LogoutComponent,
    ],
   imports: [
     BrowserModule,

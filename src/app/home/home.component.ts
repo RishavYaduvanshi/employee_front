@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MyserService } from '../services/myser.service'
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,12 +11,16 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  constructor(private userdata: MyserService,private router : Router) { }
+  urlSafe?: SafeResourceUrl;
+  url : string = "https://www.google.com/";
+
+  constructor(private userdata: MyserService,private router : Router,public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigate(['/signin']);
     }
+    this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 }

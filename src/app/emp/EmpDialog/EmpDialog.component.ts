@@ -14,9 +14,9 @@ import { NgToastService } from 'ng-angular-popup';
 export class EmpDialogComponent implements OnInit {
 
   empForm: FormGroup;
+
   departments: string[] = [];
   projects: any[] = [];
-  projShow : any[] = [];
   submitted = false;
   selecteddepartment = '';
   selectedProjects: any[] = [];
@@ -35,7 +35,7 @@ export class EmpDialogComponent implements OnInit {
         mobileNumber: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{10}')])],
         email: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')])],
         departmentName: ['', Validators.required],
-        ProjectIds: ['', Validators.required],
+        ProjectIds: [''],
       });
   }
 
@@ -61,7 +61,6 @@ export class EmpDialogComponent implements OnInit {
         // this.projects = val.map((item: any) => item.pName);
         this.projects = val;
         if (this.data && this.data.employeeProjects) {
-          console.log("proj");
           this.selectedProjects = this.data.employeeProjects.map((item: any) => item.projectId);
         }
       },
@@ -76,8 +75,6 @@ export class EmpDialogComponent implements OnInit {
     this.submitted = true;
     if (this.empForm.valid) {
       if (this.data) {
-        const projectIds = this.empForm.value.ProjectIds.map((p: { pId: number, pName: string }) => p.pId);
-        this.empForm.value.ProjectIds = projectIds;
         this._empser.updateUser(this.data.id, this.empForm.value).subscribe({
           next: (val: any) => {
             this.toast.success({ detail: "Employee Updated Successfully", duration: 5000 });
@@ -90,9 +87,7 @@ export class EmpDialogComponent implements OnInit {
         })
       }
       else {
-        const projectIds = this.empForm.value.ProjectIds.map((p: { pId: number, pName: string }) => p.pId);
-        console.log(projectIds);
-        this.empForm.value.ProjectIds = projectIds;
+        console.log(this.empForm.value);
         this._empser.addUser(this.empForm.value).subscribe({
           next: (val: any) => {
             this.toast.success({ detail: "Employee Added Successfully", duration: 5000 });

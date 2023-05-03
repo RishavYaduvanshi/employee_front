@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
         next: (val: any) => {
           this.toast.success({detail:"User Logged In Successfully",duration:5000});
           localStorage.setItem("token", val.token);
-          localStorage.setItem("user", JSON.stringify(val.user));
+          localStorage.setItem("user", val.user);
           this.router.navigate(['/']);
 
         },

@@ -11,10 +11,10 @@
         <span style="margin-right: 14px;"></span>
         <button mat-raised-button routerLink="/proj" (click)="changeColor()">Project Details</button>
         <span style="margin-right: 14px;"></span>
+        <button mat-icon-button (click)="openLogout()">
+            <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout" [ariaSetSize]="50"color="warn"></mat-icon>
+        </button>
     </div>
     
-    <button mat-icon-button (click)="logout()">
-        <mat-icon aria-hidden="false" aria-label="logout icon" fontIcon="logout" [ariaSetSize]="50"
-            color="warn"></mat-icon>
-    </button>
+    
 </mat-toolbar>

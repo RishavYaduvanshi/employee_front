@@ -1,6 +1,9 @@
-import { Component, OnInit,ElementRef, Renderer2} from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutComponent } from './logout/logout.component';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,12 +12,11 @@ import { NgToastService } from 'ng-angular-popup';
 export class NavbarComponent implements OnInit {
 
   constructor(
-    private renderer: Renderer2, 
+    private renderer: Renderer2,
     private elRef: ElementRef,
     private router: Router,
-    private toast : NgToastService,
-    ) 
-    { }
+    private _dilog: MatDialog,
+  ) { }
 
   ngOnInit() {
 
@@ -62,11 +64,7 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  logout(){
-    this.toast.success({detail:"User Logged Out Successfully",duration:5000});
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.router.navigate(['/signin']);
+  openLogout() {
+    const dilog = this._dilog.open(LogoutComponent, {});
   }
-
 }

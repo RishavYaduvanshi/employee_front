@@ -44,11 +44,12 @@
 
 
     <mat-label>Projects</mat-label>
-    <mat-selection-list formControlName="ProjectIds" [(ngModel)]="selectedProjects">
-      <mat-list-option *ngFor="let project of projects" [value]="project.pId">
-        {{ project.pName }}
-      </mat-list-option>
-    </mat-selection-list>
+    <mat-form-field appearance="fill">
+      <mat-select placeholder="select Projects"  formControlName="ProjectIds" [(ngModel)]="selectedProjects" multiple>
+        <mat-option *ngFor="let project of projects" [value]="project.pId">{{project.pName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
 
   </div>
   <div mat-dialog-actions class="action">

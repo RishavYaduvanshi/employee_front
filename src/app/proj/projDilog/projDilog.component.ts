@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject} from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { NgToastService } from 'ng-angular-popup';
 import { MyserService } from 'src/app/services/myser.service';
 
 
@@ -16,6 +17,7 @@ export class ProjDilogComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _projSer: MyserService,
+    private toast: NgToastService,
     @Inject(MAT_DIALOG_DATA) public data: any,
 
     private _dilogref: MatDialogRef<ProjDilogComponent>
@@ -37,21 +39,23 @@ export class ProjDilogComponent implements OnInit {
         console.log(this.data);
         this._projSer.updateProj(this.data.pId, this.projForm.value).subscribe({
           next: (val: any) => {
+            this.toast.success({ detail: "Project Updated Successfully", duration: 5000});
             this._dilogref.close(true);
           },
           error: (err: any) => {
-            alert("Server error: " + err.error);
-            console.error(err)
+            this.toast.error({ detail: "Server error: " + err.error, duration: 5000});
+           
           }
         })
       }
       else {
         this._projSer.addProj(this.projForm.value).subscribe({
           next: (val: any) => {
+            this.toast.success({ detail: "Project Added Successfully", duration: 5000});
             this._dilogref.close(true);
           },
           error: (err: any) => {
-            alert(err.error)
+            this.toast.error({ detail: "Server error: " + err.error, duration: 5000});
           }
         })
       }
