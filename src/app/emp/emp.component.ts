@@ -74,7 +74,6 @@ export class EmpComponent {
   getEmployeeList() {
     this._empser.getUser().subscribe({
       next: (res) => {
-        console.log(res);
         this.dataSource = new MatTableDataSource(res as any);
         this.dataSource.paginator = this._matpage;
         this.dataSource.sort = this.sort;

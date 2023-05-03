@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyserService } from '../../services/myser.service';
 import { MatCheckboxChange } from '@angular/material/checkbox'
-
+import { NgToastService } from 'ng-angular-popup';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class EmpDialogComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _empser: MyserService,
-
+    private toast: NgToastService,
     @Inject(MAT_DIALOG_DATA) public data: any,
 
     private _dilogref: MatDialogRef<EmpDialogComponent>) {
@@ -46,7 +46,6 @@ export class EmpDialogComponent implements OnInit {
       next: (val: any) => {
         this.departments = val.map((item: any) => item.name);
         if (this.data && this.data.department) {
-          console.log(this.data.department,"dept");
           this.selecteddepartment = this.data.department.name;
         }
       },
@@ -76,10 +75,12 @@ export class EmpDialogComponent implements OnInit {
     console.log(this.empForm.value);
     this.submitted = true;
     if (this.empForm.valid) {
-      console.log(this.selectedProjects);
       if (this.data) {
-        this._empser.updateUser(this.data.id,  this.empForm.value).subscribe({
+        const projectIds = this.empForm.value.ProjectIds.map((p: { pId: number, pName: string }) => p.pId);
+        this.empForm.value.ProjectIds = projectIds;
+        this._empser.updateUser(this.data.id, this.empForm.value).subscribe({
           next: (val: any) => {
+            this.toast.success({ detail: "Employee Updated Successfully", duration: 5000 });
             this._dilogref.close(true);
           },
           error: (err: any) => {
@@ -89,13 +90,16 @@ export class EmpDialogComponent implements OnInit {
         })
       }
       else {
+        const projectIds = this.empForm.value.ProjectIds.map((p: { pId: number, pName: string }) => p.pId);
+        console.log(projectIds);
+        this.empForm.value.ProjectIds = projectIds;
         this._empser.addUser(this.empForm.value).subscribe({
           next: (val: any) => {
-            // alert("Employee Added Successfully");
+            this.toast.success({ detail: "Employee Added Successfully", duration: 5000 });
             this._dilogref.close(true);
           },
           error: (err: any) => {
-            alert(err.error)
+            this.toast.error({ detail: err.error, duration: 5000 });
             console.error(err)
           }
         })
@@ -103,12 +107,14 @@ export class EmpDialogComponent implements OnInit {
     }
     else {
       // alert('Fill the data Correctly')
+      this.toast.error({ detail: "Fill the data Correctly", duration: 5000 });
     }
   }
   ngOnInit() {
     this.empForm.patchValue(this.data)
     this.getDepartmentName();
     this.getProjectName();
+   
   }
   
   get email() {
