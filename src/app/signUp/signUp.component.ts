@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MyserService } from '../services/myser.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { passwordValidator } from 'src/passValid';
 
 @Component({
   selector: 'app-signUp',
@@ -23,7 +24,7 @@ export class SignUpComponent implements OnInit {
     ) {
     this.signupForm = this._fb.group({
       UserName: ['', Validators.required],
-      Password: ['', Validators.required],
+      Password: ['', [Validators.required, passwordValidator()]],
       Email: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')])],
 
     });
@@ -35,7 +36,7 @@ export class SignUpComponent implements OnInit {
   onFormSubmit() {
     this.submitted = true;
     if(this.signupForm.valid){
-      console.log(this.signupForm.value);
+      // console.log(this.signupForm.value);
       this._projSer.signup(this.signupForm.value).subscribe({
         next: (val: any) => {
           this.toast.success({detail:"User Created Successfully",duration:5000});
@@ -48,6 +49,8 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  
+
   get UserName() {
     return this.signupForm.get('UserName');
   }
@@ -57,5 +60,10 @@ export class SignUpComponent implements OnInit {
   }
   get Email() {
     return this.signupForm.get('Email');
+  }
+
+  logme(){
+    console.log(this.signupForm.controls);
+    return true;
   }
 }

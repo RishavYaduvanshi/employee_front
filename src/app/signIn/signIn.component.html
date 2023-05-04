@@ -1,7 +1,7 @@
 <div class="login-wrapper" fxLayout="row">
   <mat-card class="box">
     <div mat-dialog-title>
-      <h3>Login</h3>
+      <h3 style="font-size: 25px; color: rgb(59, 59, 139);">Login</h3>
     </div>
     <form [formGroup]="signinForm" (ngSubmit)="onFormSubmit()">
       <div mat-dialog-content class="content">
@@ -15,7 +15,9 @@
           <input matInput type="password" placeholder="********" formControlName="Password">
           <mat-hint *ngIf="Password && Password.invalid && submitted">Please enter your password </mat-hint>
         </mat-form-field>
+        <span style="display: flex;justify-content: flex-end;font-size: 14px;"><a routerLink="/signup">Forgot Password?</a></span>
       </div>
+      <br>
       <div mat-dialog-actions class="action">
         <button mat-raised-button color="primary" type="submit">Login</button>
         
