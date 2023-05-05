@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { HttpHeaders } from '@angular/common/http';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +24,11 @@ export class MyserService {
   url12 = 'https://localhost:7052/Project/DeleteProject/'
   url13 = 'https://localhost:7052/SignUpRole/SignIn'
   url14 = 'https://localhost:7052/SignUpRole/AddSignUp'
+
+  //forgot
+
+  url15 = 'https://localhost:7052/SignUpRole/ForgotPassword'
+  url16 = 'https://localhost:7052/SignUpRole/ResetPassword'
 
 
   
@@ -93,5 +100,14 @@ export class MyserService {
   signup(data:any){
     return this.http.post(this.url14,data)
   }
+  checkEmail(email: string){
+    const params = { email };
+    return this.http.get(this.url15, { params });
+  }
 
+
+  resetPassword(Email:string, NewPassword:string){
+    
+    return this.http.get(this.url16,{params: {Email,NewPassword}});
+  }
 }

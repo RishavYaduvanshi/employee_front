@@ -1,0 +1,27 @@
+<div class="login-wrapper" fxLayout="row">
+  
+  <mat-card class="box">
+    <div mat-dialog-title>
+      <h3 style="font-size: 25px; color: rgb(59, 59, 139);">Forgot Password</h3>
+    </div>
+    <form [formGroup]="fgForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-content class="content">
+        
+        <mat-label>Email <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="email" placeholder="example@gmail.com" formControlName="Email">
+          <mat-icon matSuffix>mail</mat-icon>
+          <mat-hint *ngIf="Email && Email.invalid && submitted">Please enter valid Email ID ! </mat-hint>
+        </mat-form-field>
+      </div>
+      <br>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">Submit</button> 
+      </div>
+    </form>  
+    <br>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading" ></mat-progress-bar>
+  </mat-card-footer>
+  </mat-card>
+</div>

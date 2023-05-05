@@ -9,14 +9,15 @@
         <mat-label>UserName <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
           <input matInput type="text" placeholder="Ex. _rishav_" formControlName="UserName">
+          <mat-icon matSuffix>account_circle</mat-icon>
           <mat-hint *ngIf="UserName && UserName.invalid && submitted">Please enter your username </mat-hint>
         </mat-form-field>
 
         <mat-label>Password <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
           <input matInput type="password" placeholder="********" formControlName="Password">
-          <mat-hint *ngIf="Password && Password.status==='INVALID' && submitted">
-            
+          <mat-icon matSuffix>key</mat-icon>
+          <mat-hint *ngIf="Password  && submitted">
               <span *ngIf="Password.errors && !Password.errors['length']">
                 The password must be at least 8 characters long.
               </span>
@@ -31,6 +32,7 @@
         <mat-label>Email <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
           <input matInput type="text" placeholder="rishav@gmail.com" formControlName="Email">
+          <mat-icon matSuffix>email</mat-icon>
           <mat-hint *ngIf="Email && Email.invalid && submitted">Please enter your email </mat-hint>
         </mat-form-field>
       </div>

@@ -1,0 +1,38 @@
+<div class="login-wrapper" fxLayout="row">
+  <mat-card class="box">
+    <div mat-dialog-title>
+      <h3 style="font-size: 25px; color: rgb(59, 59, 139);">Reset Password</h3>
+    </div>
+    <form [formGroup]="forgotForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-content class="content">
+        <mat-label>New Password <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" placeholder="Ex. _rishav_" formControlName="NewPassword"> 
+          <mat-hint *ngIf="NewPassword  && submitted"> 
+            <span *ngIf="NewPassword.errors && !NewPassword.errors['length']">
+              The password must be at least 8 characters long.
+            </span>
+            <span *ngIf="NewPassword.errors && !NewPassword.errors['uppercase'] && NewPassword.errors['length']">
+              The password must contain at least one uppercase letter.
+            </span>
+            <span *ngIf="NewPassword.errors && !NewPassword.errors['symbol'] && NewPassword.errors['uppercase'] && NewPassword.errors['length'] ">
+              The password must contain at least one symbol (!@#$%^&*).
+            </span>
+        </mat-hint>
+        </mat-form-field>
+        <mat-label>Confirm Password <span class="required">*</span></mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput type="password" placeholder="********" formControlName="ConfirmPassword">
+          <mat-hint *ngIf="ConfirmPassword  && submitted && !checkBothPasswords() "> Password does not match </mat-hint>
+        </mat-form-field>
+
+      </div>
+      <br>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        
+      </div>
+    </form>
+    
+  </mat-card>
+</div>

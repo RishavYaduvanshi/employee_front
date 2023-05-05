@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { ProjComponent } from './proj/proj.component';
 import { SignInComponent } from './signIn/signIn.component';
 import { SignUpComponent } from './signUp/signUp.component';
+import { Forgot_passComponent } from './forgot_pass/forgot_pass.component';
+import { Email_forgotComponent } from './email_forgot/email_forgot.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,10 @@ const routes: Routes = [
     component : ProjComponent
   },
   {
+    path : 'fe',
+    component : Email_forgotComponent
+  },
+  {
     path : '',
     component : HomeComponent
   }
@@ -32,7 +38,12 @@ const routes: Routes = [
   {
     path : 'signup',
     component : SignUpComponent
-  }
+  },
+  {
+    path : '**',
+    component : Forgot_passComponent
+  },
+  
 ];
 
 @NgModule({

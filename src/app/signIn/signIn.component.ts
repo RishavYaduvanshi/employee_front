@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyserService } from '../services/myser.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';

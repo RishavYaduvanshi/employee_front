@@ -38,9 +38,12 @@ import { SignInComponent } from './signIn/signIn.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { LogoutComponent } from './navbar/logout/logout.component';
+import { Forgot_passComponent } from './forgot_pass/forgot_pass.component';
+import { Email_forgotComponent } from './email_forgot/email_forgot.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
-  declarations: [	
+  declarations: [				
     AppComponent,
     EmpComponent,
     DepComponent,
@@ -56,6 +59,8 @@ import { LogoutComponent } from './navbar/logout/logout.component';
     SignInComponent,
     NavbarComponent,
     LogoutComponent,
+    Forgot_passComponent,
+      Email_forgotComponent
    ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ import { LogoutComponent } from './navbar/logout/logout.component';
     MatCheckboxModule,
     MatListModule,
     NgToastModule,
+    MatProgressBarModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
