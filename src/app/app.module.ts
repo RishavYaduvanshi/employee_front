@@ -41,6 +41,10 @@ import { LogoutComponent } from './navbar/logout/logout.component';
 import { Forgot_passComponent } from './forgot_pass/forgot_pass.component';
 import { Email_forgotComponent } from './email_forgot/email_forgot.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { Side_navComponent } from './navbar/side_nav/side_nav.component';
+
 
 @NgModule({
   declarations: [				
@@ -60,7 +64,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NavbarComponent,
     LogoutComponent,
     Forgot_passComponent,
-      Email_forgotComponent
+    Email_forgotComponent,
+    Side_navComponent,
    ],
   imports: [
     BrowserModule,
@@ -82,7 +87,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCheckboxModule,
     MatListModule,
     NgToastModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

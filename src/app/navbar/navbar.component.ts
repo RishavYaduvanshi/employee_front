@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,22 @@ import { LogoutComponent } from './logout/logout.component';
 })
 export class NavbarComponent implements OnInit {
 
+  showCard = false;
+  username = localStorage.getItem('user');
+
+  openCard() {
+    this.showCard = true;
+  }
+
+  closeCard() {
+    this.showCard = false;
+  }
+
+  changePassword() {
+      this.router.navigate(['/**']);
+  }
+
+  
   constructor(
     private renderer: Renderer2,
     private elRef: ElementRef,
@@ -65,6 +81,7 @@ export class NavbarComponent implements OnInit {
   }
 
   openLogout() {
+    this.closeCard();
     const dilog = this._dilog.open(LogoutComponent, {});
   }
 }

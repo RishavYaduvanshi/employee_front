@@ -1,20 +1,129 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+.navbar {
+  background-color: #fff;
+  height: 64px;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.14);
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: 500;
+  margin-left: 8px;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar-items button {
+  margin-right: 16px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.navbar-items button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-avatar:hover {
+  transform: scale(1.1);
+}
+
+.navbar-avatar img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidenav-avatar-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  width: 300px;
+  height: 100%;
+}
+
+
+.main-content {
+  height: 100vh;
+  width: 100vw;
+  background-color: #f0f0f0;
+}
+
+.card-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.show-card {
+  opacity: 1;
+  visibility: visible;
+}
+
+.card {
+  position: absolute;
+  top: 28%;
+  left: 88%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.card-header h3 {
+  margin: auto;
+  text-align: center;
+}
+
+
+.card-header button {
+  margin-right: 0;
+  margin-left: 0;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 50px);
+}
+
+.card-body button {
+  margin-bottom: 10px;
+}
+
+.navbar-avatar {
+  cursor: pointer;
   
-  .navcol{
-    background-color: #ddcccc;
-  }
-  
-  .rightBtn {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  
-  .rightBtn button:first-child {
-    margin-right: 20px;
-  }
-  
-  
+}
