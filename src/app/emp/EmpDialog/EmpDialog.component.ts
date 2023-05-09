@@ -30,10 +30,10 @@ export class EmpDialogComponent implements OnInit {
 
     private _dilogref: MatDialogRef<EmpDialogComponent>) {
       this.empForm = this._fb.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        firstName: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]+'), Validators.minLength(3)])],
+        lastName: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]+'), Validators.minLength(3)])],
         mobileNumber: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{10}')])],
-        email: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-zA-Z]+')])],
+        email: ['', Validators.compose([Validators.required, Validators.pattern('[a-z-0-9.]+@[a-z-0-9]+\\.[a-zA-Z]+')])],
         departmentName: ['', Validators.required],
         ProjectIds: [''],
       });

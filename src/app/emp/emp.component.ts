@@ -15,6 +15,10 @@ import { Router } from '@angular/router';
 })
 export class EmpComponent {
 
+
+
+ 
+
   constructor(
     private _empser: MyserService,
     private _dilog: MatDialog,
@@ -110,5 +114,13 @@ export class EmpComponent {
         }
       },
     });
+  }
+
+  isAdminUser() {
+    const user = localStorage.getItem('user');
+    if(user === 'admin') {
+      return true;
+    }
+    return false;
   }
 }

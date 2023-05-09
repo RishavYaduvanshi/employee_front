@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { Side_navComponent } from './side_nav.component';
+import { Email_verifiedComponent } from './email_verified.component';
 
-describe('Side_navComponent', () => {
-  let component: Side_navComponent;
-  let fixture: ComponentFixture<Side_navComponent>;
+describe('Email_verifiedComponent', () => {
+  let component: Email_verifiedComponent;
+  let fixture: ComponentFixture<Email_verifiedComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Side_navComponent ]
+      declarations: [ Email_verifiedComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Side_navComponent);
+    fixture = TestBed.createComponent(Email_verifiedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

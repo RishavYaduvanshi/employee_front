@@ -8,6 +8,7 @@ import { SignInComponent } from './signIn/signIn.component';
 import { SignUpComponent } from './signUp/signUp.component';
 import { Forgot_passComponent } from './forgot_pass/forgot_pass.component';
 import { Email_forgotComponent } from './email_forgot/email_forgot.component';
+import { Email_verifiedComponent } from './email_verified/email_verified.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,11 @@ const routes: Routes = [
   {
     path : '',
     component : HomeComponent
-  }
-  ,
+  },
+  {
+    path : 'email_verified',
+    component : Email_verifiedComponent
+  },
   {
     path : 'signin',
     component : SignInComponent

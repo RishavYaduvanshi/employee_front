@@ -1,0 +1,48 @@
+mat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Style the card header */
+  mat-card-header {
+    background-color: #2196f3;
+    color: white;
+    padding: 15px;
+    border-radius: 25%;
+  }
+  
+  /* Style the card title */
+  mat-card-title {
+    font-size: 2rem;
+  }
+  
+  /* Style the card content */
+  mat-card-content {
+    text-align: center;
+  }
+  
+  /* Style the main heading */
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style the secondary heading */
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Style the login link */
+  .login-link {
+    color: #2196f3;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }

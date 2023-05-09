@@ -30,6 +30,10 @@ export class MyserService {
   url15 = 'https://localhost:7052/SignUpRole/ForgotPassword'
   url16 = 'https://localhost:7052/SignUpRole/ResetPassword'
 
+  // emailverfied
+
+  url17 = 'https://localhost:7052/SignUpRole/EmailVerfiedDone'
+
 
   
  
@@ -107,7 +111,9 @@ export class MyserService {
 
 
   resetPassword(Email:string, NewPassword:string){
-    
     return this.http.get(this.url16,{params: {Email,NewPassword}});
+  }
+  emailVerfiedDone(Email:string){
+    return this.http.get(this.url17,{params: {Email}});
   }
 }

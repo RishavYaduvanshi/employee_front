@@ -43,11 +43,11 @@ import { Email_forgotComponent } from './email_forgot/email_forgot.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { Side_navComponent } from './navbar/side_nav/side_nav.component';
+import { Email_verifiedComponent } from './email_verified/email_verified.component';
 
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
     EmpComponent,
     DepComponent,
@@ -65,7 +65,7 @@ import { Side_navComponent } from './navbar/side_nav/side_nav.component';
     LogoutComponent,
     Forgot_passComponent,
     Email_forgotComponent,
-    Side_navComponent,
+    Email_verifiedComponent
    ],
   imports: [
     BrowserModule,

@@ -15,6 +15,8 @@ export class SignUpComponent implements OnInit {
   signupForm !: FormGroup;
   submitted = false;
 
+  loading = false;
+
   constructor
     (
       private _fb: FormBuilder,
@@ -37,12 +39,15 @@ export class SignUpComponent implements OnInit {
     this.submitted = true;
     if(this.signupForm.valid){
       // console.log(this.signupForm.value);
+      this.loading = true;
       this._projSer.signup(this.signupForm.value).subscribe({
         next: (val: any) => {
-          this.toast.success({detail:"User Created Successfully",duration:5000});
+          this.loading = false;
+          this.toast.success({detail:"Please Verify your email id",duration:5000});
           this.router.navigate(['/signin']);
         },
         error: (err: any) => {
+          this.loading = false;
           this.toast.error({detail:`ERROR : ${err.error}`,duration:5000});
         }
       })
@@ -60,6 +65,12 @@ export class SignUpComponent implements OnInit {
   }
   get Email() {
     return this.signupForm.get('Email');
+  }
+
+  showPassword = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   logme(){

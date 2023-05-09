@@ -106,4 +106,11 @@ export class ProjComponent implements OnInit {
     }
   }
 
+  isAdminUser() {
+    const user = localStorage.getItem('user');
+    if(user === 'admin') {
+      return true;
+    }
+    return false;
+  }
 }

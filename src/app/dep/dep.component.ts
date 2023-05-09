@@ -109,4 +109,11 @@ export class DepComponent {
       this.noDataFound = false;
     }
   }
+  isAdminUser() {
+    const user = localStorage.getItem('user');
+    if(user === 'admin') {
+      return true;
+    }
+    return false;
+  }
 }

@@ -1,11 +1,11 @@
 <div class="login-wrapper" fxLayout="row">
   <mat-card class="box">
-    <div mat-dialog-title>
+    <mat-dialog-title style="display: flex;align-items: center;align-content: center;text-align: center;">
       <h3 style="font-size: 25px; color: rgb(59, 59, 139);">SignUp</h3>
-    </div>
+    </mat-dialog-title>
     <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
 
-      <div mat-dialog-content class="content">
+      <mat-dialog-content class="content">
         <mat-label>UserName <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
           <input matInput type="text" placeholder="Ex. _rishav_" formControlName="UserName">
@@ -15,18 +15,20 @@
 
         <mat-label>Password <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
-          <input matInput type="password" placeholder="********" formControlName="Password">
-          <mat-icon matSuffix>key</mat-icon>
-          <mat-hint *ngIf="Password  && submitted">
-              <span *ngIf="Password.errors && !Password.errors['length']">
-                The password must be at least 8 characters long.
-              </span>
-              <span *ngIf="Password.errors && !Password.errors['uppercase'] && Password.errors['length']">
-                The password must contain at least one uppercase letter.
-              </span>
-              <span *ngIf="Password.errors && !Password.errors['symbol'] && Password.errors['uppercase'] ">
-                The password must contain at least one symbol (!@#$%^&*).
-              </span>
+          <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="********" formControlName="Password">
+          <mat-icon matSuffix (mousedown)="showPassword = !showPassword">
+            {{!showPassword ? 'visibility_off' : 'visibility'}}
+          </mat-icon>
+          <mat-hint *ngIf="Password && submitted">
+            <span *ngIf="Password.errors && !Password.errors['length']">
+              The password must be at least 8 characters long.
+            </span>
+            <span *ngIf="Password.errors && !Password.errors['uppercase'] && Password.errors['length']">
+              The password must contain at least one uppercase letter.
+            </span>
+            <span *ngIf="Password.errors && !Password.errors['symbol'] && Password.errors['uppercase'] ">
+              The password must contain at least one symbol (!@#$%^&*).
+            </span>
           </mat-hint>
         </mat-form-field>
         <mat-label>Email <span class="required">*</span></mat-label>
@@ -35,16 +37,18 @@
           <mat-icon matSuffix>email</mat-icon>
           <mat-hint *ngIf="Email && Email.invalid && submitted">Please enter your email </mat-hint>
         </mat-form-field>
-      </div>
-      <br> 
-      <div mat-dialog-actions class="action">
-        <button mat-raised-button color="primary" type="submit">SignUp</button>
-      </div>
-      <div class="login-section">
-        <h4>Already have an account?</h4>
-        <a routerLink="/signin" class="login-link">Login</a>
-      </div>
-    </form>
+      </mat-dialog-content>
 
+      <mat-footer>
+        <mat-dialog-actions class="action">
+          <button mat-raised-button color="primary" type="submit">SignUp</button>
+        </mat-dialog-actions>
+        <div class="login-section">
+          <h4>Already have an account?</h4>
+          <a routerLink="/signin" class="login-link">Login</a>
+        </div>
+      </mat-footer>
+    </form>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   </mat-card>
 </div>

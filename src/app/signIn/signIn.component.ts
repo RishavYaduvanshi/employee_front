@@ -16,8 +16,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _myser: MyserService,
-    private toast : NgToastService,
-    private router : Router
+    private toast: NgToastService,
+    private router: Router
   ) {
     this.signinForm = this._fb.group({
       UserName: ['', Validators.required],
@@ -34,21 +34,26 @@ export class SignInComponent implements OnInit {
       console.log(this.signinForm.value);
       this._myser.login(this.signinForm.value).subscribe({
         next: (val: any) => {
-          this.toast.success({detail:"User Logged In Successfully",duration:5000});
+          this.toast.success({ detail: "User Logged In Successfully", duration: 5000 });
           localStorage.setItem("token", val.token);
           localStorage.setItem("user", val.user);
           this.router.navigate(['/']);
 
         },
         error: (err: any) => {
-          this.toast.error({detail:`ERROR : ${err.error}`,duration:5000});
+          this.toast.error({ detail: `ERROR : ${err.error}`, duration: 5000 });
         }
 
       })
-      
+
     }
   }
 
+  showPassword = false;
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
   get UserName() {
     return this.signinForm.get('UserName');
   }
