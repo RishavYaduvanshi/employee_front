@@ -1,11 +1,18 @@
 <mat-card style="display: flex;">
-  <mat-card-header *ngIf="display">
+  <mat-card-header >
     <mat-card-title>
       <h1>Email Verification</h1>
     </mat-card-title>
   </mat-card-header>
-  <mat-spinner *ngIf="!display" style="margin: auto;"></mat-spinner>
-  <mat-card-content *ngIf="display">
+  <br>
+  <br>
+  <mat-card-content *ngIf="!display">
+    <button mat-raised-button color="primary" (click)="email_verified()">Click Here To Vierify</button>
+    <br><br>
+    <mat-spinner  style="margin: auto;"></mat-spinner>
+  </mat-card-content>
+  
+  <mat-card-content  *ngIf="display">
     <h1 >Email Verified</h1>
     <h3 >You can now login to your account</h3>
     <div>
