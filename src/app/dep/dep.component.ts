@@ -103,7 +103,6 @@ export class DepComponent {
     }
 
     // Check if the filtered data is empty
-    //filtered
     if (this.department.filteredData.length === 0) {
       this.noDataFound = true;
     } else {
