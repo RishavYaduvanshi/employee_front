@@ -13,18 +13,17 @@ export class Forgot_passComponent implements OnInit {
 
   forgotForm !: FormGroup;
   submitted = false;
-  email !: string;
+  email !: any;
 
   constructor(
     private _fb: FormBuilder,
-    private toast : NgToastService,
-    private router : Router,
-    private route : ActivatedRoute,
-    private _myservice : MyserService
-  ) 
-  { 
+    private toast: NgToastService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private _myservice: MyserService
+  ) {
     this.forgotForm = this._fb.group({
-      NewPassword: ['', [Validators.required,passwordValidator()]],
+      NewPassword: ['', [Validators.required, passwordValidator()]],
       ConfirmPassword: ['', Validators.required],
     });
   }
@@ -34,32 +33,35 @@ export class Forgot_passComponent implements OnInit {
     this.email = this.route.snapshot.queryParams['email'];
   }
 
-  onFormSubmit(){
+  onFormSubmit() {
     this.submitted = true;
-    if(this.checkBothPasswords()){
+    if (this.checkBothPasswords()) {
       if (this.forgotForm.valid) {
-        console.log(this.forgotForm.value['NewPassword'],this.email);
-        this._myservice.resetPassword(this.email,this.forgotForm.value['NewPassword']).subscribe({
-          next: data => {
-            this.toast.success({detail:"Password Changed Successfully",duration:5000});
-            this.router.navigate(['/signin']);
-          },
-          error: error => {
-            console.error('There was an error!', error);
-          }
-        });
-      }
+        if (this.email == undefined) {
+          this.email = localStorage.getItem('user')?.toString();
+        }
+          console.log(this.forgotForm.value['NewPassword'], this.email);
+          this._myservice.resetPassword(this.email, this.forgotForm.value['NewPassword']).subscribe({
+            next: data => {
+              this.toast.success({ detail: "Password Changed Successfully", duration: 5000 });
+              this.router.navigate(['/signin']);
+            },
+            error: error => {
+              console.error('There was an error!', error);
+            }
+          });
+        }
     }
-    else{
-      // this.toast.error({detail:"Passwords do not match",duration:5000});
+    else {
+      this.toast.error({detail:"Passwords do not match",duration:5000});
     }
   }
-  checkBothPasswords(){
-    if(this.NewPassword?.value == this.ConfirmPassword?.value)
+  checkBothPasswords() {
+    if (this.NewPassword?.value == this.ConfirmPassword?.value)
       return true;
     else
       return false;
-    
+
   }
   get NewPassword() {
     return this.forgotForm.get('NewPassword');
@@ -68,7 +70,7 @@ export class Forgot_passComponent implements OnInit {
     return this.forgotForm.get('ConfirmPassword');
   }
 
-  valid(){
+  valid() {
     console.log(this.forgotForm.controls);
     return true;
   }

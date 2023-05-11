@@ -3,7 +3,6 @@ import { MyserService } from '../services/myser.service'
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,13 +13,17 @@ export class HomeComponent {
   urlSafe?: SafeResourceUrl;
   url : string = "https://www.google.com/";
 
-  constructor(private userdata: MyserService,private router : Router,public sanitizer: DomSanitizer) { }
+  constructor(
+    private userdata: MyserService,
+    private router : Router,
+    public sanitizer: DomSanitizer,
+    ) { }
 
   ngOnInit() {
+    
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigate(['/signin']);
     }
-    this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 }

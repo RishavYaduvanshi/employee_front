@@ -74,7 +74,7 @@ export class DepComponent {
           this.department.sort = this.sort;
         },
         error: (err) => {
-          alert("Server error: " + err.message);
+          // alert("Server error: " + err.message);
           
         },
       });

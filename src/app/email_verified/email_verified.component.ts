@@ -22,7 +22,7 @@ export class Email_verifiedComponent implements OnInit {
 
   ngOnInit() {
     this.email = this._route.snapshot.queryParams['email'];
-    
+    this.email_verified();
   }
   email_verified(){
     this._myser.emailVerfiedDone(this.email).subscribe({

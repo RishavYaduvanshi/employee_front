@@ -24,7 +24,7 @@ const routes: Routes = [
     component : ProjComponent
   },
   {
-    path : 'fe',
+    path : 'forgot/email',
     component : Email_forgotComponent
   },
   {
