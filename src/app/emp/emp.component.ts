@@ -117,8 +117,8 @@ export class EmpComponent {
   }
 
   isAdminUser() {
-    const token = localStorage.getItem('token');
-    if(token === 'admin') {
+    const user = localStorage.getItem('user');
+    if(user === 'admin') {
       return true;
     }
     return false;

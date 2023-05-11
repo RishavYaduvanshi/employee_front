@@ -5,6 +5,13 @@
     0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 1px 3px 0 rgba(0, 0, 0, 0.14);
 }
+div img:hover {
+  cursor: pointer;
+}
+
+
+
+
 
 .navbar-brand {
   font-size: 24px;
