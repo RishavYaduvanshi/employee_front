@@ -9,8 +9,8 @@ import { HttpHeaders } from '@angular/common/http';
 export class MyserService {
   URL_BASE : string
   constructor(private http : HttpClient) { 
-    // this.URL_BASE = "https://rishav.d3m0n1k.engineer"
-    this.URL_BASE = "https://localhost:7052"
+    this.URL_BASE = "https://rishav.d3m0n1k.engineer"
+    // this.URL_BASE = "https://localhost:7052"
   }
   url = 'https://mocki.io/v1/5ec525a6-5606-4d79-b405-61c06401fe55'
   url1 = '/Department/GetAllDepartments'
