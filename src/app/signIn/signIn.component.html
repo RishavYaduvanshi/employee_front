@@ -5,7 +5,7 @@
     </div>
     <form [formGroup]="signinForm" (ngSubmit)="onFormSubmit()">
       <div mat-dialog-content class="content">
-        <mat-label>UserName <span class="required">*</span></mat-label>
+        <mat-label>UserName / Email <span class="required">*</span></mat-label>
         <mat-form-field appearance="outline">
           <input matInput type="text" placeholder="Ex. _rishav_" formControlName="UserName">
           <mat-icon matSuffix>account_circle</mat-icon>

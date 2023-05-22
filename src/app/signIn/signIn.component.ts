@@ -22,6 +22,7 @@ export class SignInComponent implements OnInit {
     this.signinForm = this._fb.group({
       UserName: ['', Validators.required],
       Password: ['', Validators.required],
+      Email : ['']
     });
   }
 
@@ -31,6 +32,10 @@ export class SignInComponent implements OnInit {
   onFormSubmit() {
     this.submitted = true;
     if (this.signinForm.valid) {
+      if(this.checkEmailFormat()){
+        this.signinForm.value.Email = this.UserName?.value; 
+        this.signinForm.value.UserName = null;
+      }
       console.log(this.signinForm.value);
       this._myser.login(this.signinForm.value).subscribe({
         next: (val: any) => {
@@ -49,6 +54,19 @@ export class SignInComponent implements OnInit {
     }
   }
 
+  checkEmailFormat() {
+    if (this.UserName?.value) {
+      if (this.UserName.value.includes('@')) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
 
   showPassword = false;
 
